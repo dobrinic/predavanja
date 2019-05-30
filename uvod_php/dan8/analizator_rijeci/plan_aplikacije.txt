@@ -1,0 +1,41 @@
+############# ANALIZATOR RIJEČI ##############
+
+1. Analiza unesene riječi - značajke aplikacije
+	- Pretvoriti sva slova u velika
+	- Koliko slova ima unesena riječ
+	- Koliko suglasnika i samoglasnika ima unesena riječ
+	- Da li unesena riječ sadrži hrvatska slova, ako ih sadrži onda ispišemo koja su to slova
+
+2. Struktura aplikacije
+	- Početna stranica
+	- Stranica za validaciju i ispis grešaka
+	- Stranica za ispis rezultata
+	- Funkcijska datoteka
+	
+2.1 Početna stranica
+	- Naslov (naziv aplikacije)
+	- Obrazac s jednim poljem za unos teksta i gumb
+	- Kontrola toka: Ako funkcija za validaciju javi grešku uključi se stranica za validaciju, ako nema greške uključi se stranica za ispis
+
+2.2 Stranica za validaciju i ispis grešaka
+	- Provjera unesene riječi te ispis greške ako ona postoji, ako ne postoji prosljeđuje unesenu riječ funkciji za obradu.
+
+2.3 Stranica za ispis rezultata
+	- Nakon obrade ispisujemo rezultat pomoću funkcija u funkcijskoj datoteci
+	
+2.4 Funkcijska datoteka - popis funkcija
+	- Funkcija za validaciju unesene riječi (word_validation)
+		a) Polje nesmije biti prazno
+		b) Unos mora sadržavati samo slova
+		c) Unesena riječ mora biti duža od dva znaka
+	- Funkcija za velika slova (to_uppercase)
+		a) Unesenu riječ pretvoriti u velika slova
+	- Funkcija za razdvajanje slova (separate_into_letters)
+		a) Slova lj, nj, dž moraju biti jedan znak
+	- Funkcija za samoglasnike (vowels)
+		a) Izbrojati samoglasnike
+	- Funkcija za suglasnike (consonants)
+		a) Izbrojati suglasnike
+	- Funkcija za ispis hrvatskih slova (cro_letters)
+		a) Ako u riječi postoje hrv. slova treba ih ispisti, ako ne postoje ispisati da riječ ne sadrži hrv. slova
+	
