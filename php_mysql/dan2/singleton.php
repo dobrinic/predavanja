@@ -8,8 +8,6 @@ class DB {
     private $user = 'root';
     private $pass = '';
     private $db = 'tvrtka';
-    // private $dsn = "mysql:host=$this->host;dbname=$this->db;charset=UTF8";
-   // echo $dsn; die();
 
     private function __construct(){
         $this->connection = new PDO("mysql:host=$this->host;dbname=$this->db;charset=UTF8", $this->user, $this->pass);
@@ -26,29 +24,58 @@ class DB {
         return $this->connection;
     }
 
-    public function query($columns, $table){
-        $query = "SELECT $columns FROM $table";
+    public function query($columns, $table, $where=null){
+
+        if ($where) {
+            $query = "SELECT $columns FROM $table WHERE $where";
+        }else{
+            $query = "SELECT $columns FROM $table";
+        }        
 
         $result = $this->connection->prepare($query);
 
         $result->execute();
 
         return $result->fetchAll(PDO::FETCH_OBJ);
-        //return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function delete($table, $where){
+        // DELETE FROM $table $where;
+    }
+
+    public function insert(){
+        // INSERT INTO $table ($columns->keys) VALUES ($columns->vrijednosti)
+    }
+
+}
+
+
+
+
+
+
+class Zaposlenik {
+
+    private $db;
+
+    function __construct($db){
+        $this->db = $db;
+    }
+
+    public function pronadji_zaposlenika($id){
+        $zaposlenik = $this->db->query("*" , "zaposlenici", "id=$id");
+        return $zaposlenik;
     }
 }
 
-// $obj = new DB(); Ne radi jer je konstruktor privatan
-$obj = DB::getInstance();
-$results = $obj->query("*", "zaposlenici");
+$database = DB::getInstance();
 
-foreach ($results as $key => $value) {
+$zaposlenik = new Zaposlenik($database);
+
+$rez = $zaposlenik->pronadji_zaposlenika(3);
+
+foreach ($rez as $key => $value) {
     echo '<p>';
     echo ++$key . '. ' . $value->ime . ' ' . $value->prezime;
-    //echo $value['ime'] . ' ' . $value['prezime'];
     echo '</p>';
 }
-// var_dump($results);
-
-
-$results = $obj->query("SELECT * FROM zaposlenici WHERE id=2");
