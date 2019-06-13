@@ -41,15 +41,52 @@ class DB {
 
     public function delete($table, $where){
         // DELETE FROM $table $where;
+
+        $query =
+
+        $result = $this->connection->prepare($query);
+
+        $result->execute();
+
+        return $result->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function insert(){
+    public function insert($table, $cloumns){
         // INSERT INTO $table ($columns->keys) VALUES ($columns->vrijednosti)
+        // insert('zaposlenici', [ 'ime' => 'Vijeko', 'prezime' => 'Vjekić' ]);
+        // INSERT INTO zaposlenici ('ime', 'prezime') VALUES ('Vijeko', 'Vjekić');
+
+        $query =
+
+        $result = $this->connection->prepare($query);
+
+        $result->execute();
+
+        return $result->fetchAll(PDO::FETCH_OBJ);
+
     }
+
+    public function get($columns, $table, $where = array()){
+        // get('ime, prezime', 'zaposlenici', ['id', '=', '2']);
+
+        $query =
+
+        $result = $this->connection->prepare($query);
+
+        $result->execute();
+
+        return $result->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function update($table, $fields, $id){
+        // UPDATE $table SET $fields WHERE id=$id;
+    }
+
+
 
 }
 
-
+DB::getInstance()->insert('zaposlenici', [ 'ime' => 'Vijeko', 'prezime' => 'Vjekić' ,.....]);
 
 
 
